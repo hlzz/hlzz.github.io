@@ -18,7 +18,6 @@ avatar: https://avatars2.githubusercontent.com/u/4837640?v=3&s=460
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: shentianweipku@gmail.com
   facebook:
   flickr:
   github: hlzz
@@ -30,6 +29,7 @@ footer-links:
   stackoverflow: users/1222783/nothing-more # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
+  email: shentianweipku@gmail.com
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
