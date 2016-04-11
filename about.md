@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+I am a second-year Ph.D. student in Hong Kong University of Science and Technology. My research interests include large-scale Structure-from-Motion, graph analysis in 3D reconstruction and related optimization problems. Visit my [homepage](www.tianweishen.com) for more details! 
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[shentianweipku[at]gmail[dot]com](mailto:shentianweipku@gmail.com)
