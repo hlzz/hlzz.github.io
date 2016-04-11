@@ -6,7 +6,7 @@ permalink: /about/
 
 ### More Information
 
-I am a second-year Ph.D. student in Hong Kong University of Science and Technology. My research interests include large-scale Structure-from-Motion, graph analysis in 3D reconstruction and related optimization problems. Visit my [homepage](www.tianweishen.com) for more details! 
+I am a second-year Ph.D. student in Hong Kong University of Science and Technology. My research interests include large-scale Structure-from-Motion, graph analysis in 3D reconstruction and related optimization problems. Visit my [homepage](https://www.tianweishen.com) for more details! 
 
 ### Contact me
 
