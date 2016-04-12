@@ -237,14 +237,6 @@ nav {
   }
 }
 
-.github-info {
-clear: left;
-	float: right;
-    position: relative;
-    top: -25px;
-    margin-bottom: -20px;
-}
-
 //
 // .main
 //
@@ -292,6 +284,27 @@ footer {
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
+
+//custom
+.github-info 
+{
+clear: left;
+float: right;
+position: relative;
+top: -25px;
+margin-bottom: -20px;
+}
+
+.widget-area {
+float: left;
+width: 160px;
+clear: left;
+margin-left: -220px;
+text-align: right;
+font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+font-size: 15px;
+}
+
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";

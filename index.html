@@ -2,6 +2,13 @@
 layout: default
 ---
 
+<div class="widget-area">
+    <div>Recent articles</div>
+    {% for post in site.posts %}
+    <div style="margin-bottom:1em"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></div>
+    {% endfor %}
+</div>
+
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
