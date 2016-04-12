@@ -3,7 +3,7 @@
 #
 
 # Name of your site (displayed in the header)
-name: Tianwei Shen
+name: Tianwei Shen, 申天纬
 
 # Short bio or description (displayed in the header)
 description: CS PhD@HKUST, Computer Vision
@@ -18,30 +18,30 @@ avatar: https://avatars2.githubusercontent.com/u/4837640?v=3&s=460
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: shentianweipku@gmail.com
   facebook:
   flickr:
   github: hlzz
   instagram:
-  linkedin:
+  linkedin: shentianwei
   pinterest:
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
   twitter: HegongEngineer
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  stackoverflow: users/1222783/nothing-more # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
+  email: shentianweipku@gmail.com
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
-disqus:
+disqus: tianweishen 
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: UA-76246278-1
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url:
+url: http://hlzz.github.io
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -52,9 +52,6 @@ baseurl: ""
 #
 # !! You don't need to change any of the configuration flags below !!
 #
-
-markdown: redcarpet
-highlighter: pygments
 permalink: /:title/
 
 # The release of Jekyll Now that you're using
@@ -67,6 +64,7 @@ sass:
 # Use the following plug-ins
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+  - Jekyll-archives
 
 # Exclude these files from your production _site
 exclude:
