@@ -18,14 +18,17 @@ mv ~/vim ~/.vim     # change the folder name
 
 Below are the vim addons that it automically installs:  
 
-| Plugin        | Function                                          | 
-| ------------- |:-----------------------------------------------   |
-| ctrlsf.vim    | An ack/ag/pt powered code search and view tool.   |
-| OmniCppComplete | C/C++ omni-completion with ctags database.      |
-| indexer| Auto-generate tags for all files of project(s) and keep tags up-to-date. |
-| pathogen.vim| It makes it super easy to install plugins and runtime files in their own private directories.|
-| vim-signature| vim-signature is a plugin to place, toggle and display marks.|
-| vimprj| Plugin for managing options for different projects.|
+* ctrlsf.vim: An ack/ag/pt powered code search and view tool.  
+
+* OmniCppComplete: C/C++ omni-completion with ctags database.  
+
+* indexer: Auto-generate tags for all files of project(s) and keep tags up-to-date.  
+
+* pathogen.vim: It makes it super easy to install plugins and runtime files in their own private directories.  
+
+* vim-signature: vim-signature is a plugin to place, toggle and display marks.  
+
+* vimprj: Plugin for managing options for different projects.  
 
 
 For more instructions head over to the [dotfiles](https://github.com/hlzz/dotfiles) on GitHub.
