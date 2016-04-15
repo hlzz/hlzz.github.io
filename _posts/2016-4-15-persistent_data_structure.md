@@ -43,6 +43,7 @@ Whenever a recursion modification happens, the potential decrease (-2cp) cancels
 
 ## Full persistence
 Full persistence relies on a order-maintenance data structure in the future lecture, so that we can linearize a version tree by traversing the node:
+
 * It can insert item before/after a given node in O(1) time.  
 
 * Moreover, relative order of two item x&y can be answered in O(1) time.  
