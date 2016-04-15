@@ -56,10 +56,26 @@ To read node.field at version v we now need to look at the mods that are the nea
 plus O(1) space.
 
 Now we need to store back-pointers for all versions. A node can store up to *2(d+p+1)* mods, where *d* is the maximum out-degree and *p* is the maximum in-degree.
-The update step when the node is full is different from the partial persistence. 
+The update step is different from the partial persistence when the node is full. The old node is splitted into two nodes and then update pointers. 
+In this case, the version tree should also be splitted at this point and some of the pointers that points to the original nodes should now point to the new node. 
+So we need to recursively update *2d+2p+1* pointers. The potential function is $c\sum #empty mods. slots$. 
+The following analysis is similar to the partially persistence case and omitted.  
+
+De-amortize (Eric): O(1) worst-case slow down for partial persistence. For full persistent it is a open problem
+
+## Confluent persistence and functional persistence
+For confluent persistence the versions forms a DAG. [3] gives an exponential reduction in space and time compared to the naive method. 
+I don't fully understand this part and there are still some open problems. 
+So I will just list the literatures [3, 4, 5] that Eric has mentioned in his class for further reference.
 
 ## Reference
 
 [1] Driscoll, James R., et al. "Making data structures persistent." Proceedings of the eighteenth annual ACM symposium on Theory of computing. ACM, 1986.  
 
 [2] Persistent data structure, https://en.wikipedia.org/wiki/Persistent_data_structure.
+
+[3] Fiat, Amos, and Haim Kaplan. "Making data structures confluently persistent." Proceedings of the twelfth annual ACM-SIAM symposium on Discrete algorithms. Society for Industrial and Applied Mathematics, 2001.
+
+[4] Collette, Sébastien, John Iacono, and Stefan Langerman. "Confluent persistence revisited." Proceedings of the twenty-third annual ACM-SIAM symposium on Discrete Algorithms. SIAM, 2012.
+
+[5] Okasaki, Chris. Purely functional data structures. Cambridge University Press, 1999
