@@ -23,16 +23,39 @@ the research related to the latter two persistence is not fully solved.
 
 ## Partially persistence  
 The method that Eric shows is basically the node-copying method in the original paper [1]. 
-This allows nodes in the persistent structure to hold only a fixed number of field values. 
+This allows nodes in the persistent structure to hold only a fixed number of field values (*2p* where *p* is the maximum in-degree). 
 When we run out of space in a node, we create a new copy of the node and update a set of back-pointers (up to *p* back-pointers, therefore at most *p* in-nodes).
-We must also store pointers to the new copy in all predecessors of the copied node in the newest version. 
+We must also store pointers to the new copy in all predecessors of the copied node in the newest version. The *mod* is of the form (version, field, value)
 Therefore, the cost is recursive because of this field update for all predecessors. Here I will follow the partial persistence version in Eric's class.
 
 **Partial persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made partially persistent with O(1) amorized factor over head 
 plus O(1) space.
 
-The proof employs amortized analysis and potential method. The potential function $\Phi$ is defined as $\Phi = c\sum #mods$. 
-Therefore whenever a recursion modification happens, the potential decrease (-2cp) cancels out with the $p\dot recursion$, very clever!
+**Proof**: The proof employs amortized analysis and potential method. There are two cases for modifying the field value: 
+The potential function $\Phi$ is defined as $\Phi = c\sum #mods$. 
+
+* 1) If the node is not full (a node can store up to *2p* mods), just record the mod, so the amortized cost is c + c (the actual cost plus the potential increase)
+
+* 2) If the node is full, make a new node and apply all the mods, update back pointers of the new node using the backpointers of the copied node, and recursively 
+update pointers of the predecessors. 
+
+Whenever a recursion modification happens, the potential decrease (-2cp) cancels out with the $p \dot recursion$, thus the amortized cost is constant. Very clever!
+
+## Full persistence
+Full persistence relies on a order-maintenance data structure in the future lecture, so that we can linearize a version tree by traversing the node:
+* It can insert item before/after a given node in O(1) time.  
+
+* Moreover, relative order of two item x&y can be answered in O(1) time.  
+
+* "Is version *v* is an ancestor of *w*?" (b_v < b_w < e_w < e_v) can also be answered in O(1) time.  
+
+To read node.field at version v we now need to look at the mods that are the nearest ancestor to v. The full persistence theorem does not change too much: 
+
+**Full persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made full persistent with O(1) amorized factor over head 
+plus O(1) space.
+
+Now we need to store back-pointers for all versions. A node can store up to *2(d+p+1)* mods, where *d* is the maximum out-degree and *p* is the maximum in-degree.
+The update step when the node is full is different from the partial persistence. 
 
 ## Reference
 
