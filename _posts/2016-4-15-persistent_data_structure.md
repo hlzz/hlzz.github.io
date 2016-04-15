@@ -23,6 +23,6 @@ the research related to the latter two persistence is not fully solved.
 
 ## Reference
 
-[1]: Driscoll, James R., et al. "Making data structures persistent." Proceedings of the eighteenth annual ACM symposium on Theory of computing. ACM, 1986.  
+[1] Driscoll, James R., et al. "Making data structures persistent." Proceedings of the eighteenth annual ACM symposium on Theory of computing. ACM, 1986.  
 
-[2]: Persistent data structure, https://en.wikipedia.org/wiki/Persistent_data_structure.
+[2] Persistent data structure, https://en.wikipedia.org/wiki/Persistent_data_structure.
