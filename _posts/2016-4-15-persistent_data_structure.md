@@ -2,13 +2,16 @@
 layout: post
 title: MIT 6.851 Lesson 1 - Making Data Structures Persistent (高级数据结构 L1 - 持久化数据结构)
 ---
-I started watching [MIT 6.851](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf) (Advanced Data Structures) by Professor Eric Demaine on YouTube a year ago, but often give it up halfway. So this time I decided to document my progress 
-to keep me committed. I would watch some of the lecture videos before going to bed and then write down some notes next morning. Let's get started!
+I started watching [MIT 6.851](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf) (Advanced Data Structures) by Professor Eric Demaine on YouTube a year ago, but often give it up halfway. So this time I decided to document my progress to keep me committed. 
+Why am I doing this? I believe that algorithms are at the core of computer science. 
+Though I am now doing research on the application side of computer science, 
+knowing some general theoretic results and bringing up an algorithmic thinking would be beneficial to reason about what we are do and what we cannot.
+I would watch some of the lecture videos before going to bed and then write down some notes next morning. Let's get started!
 
 The first lecture concerns with persistent data structures. The topic is broad and I cannot grasp all the essence solely by watching the lectures. 
 Therefore some reference reading is necessary to catch up with the course. The following content is based on the lecture and some reference materials.
 
-## Four types of persistency [2]  
+## Four Types of Persistency [2]  
 
 * Partially persistent: may query any previous version of the data structure, but we may only update the latest version.  
 
@@ -21,7 +24,8 @@ Therefore some reference reading is necessary to catch up with the course. The f
 This class contains general techniques to do partial persistence and full persistence, and what we know about confluent persistence and functional persistence, which means 
 the research related to the latter two persistence is not fully solved.
 
-## Partially persistence  
+## Partially Persistence  
+
 The method that Eric shows is basically the node-copying method in the original paper [1]. 
 This allows nodes in the persistent structure to hold only a fixed number of field values (*2p* where *p* is the maximum in-degree). 
 When we run out of space in a node, we create a new copy of the node and update a set of back-pointers (up to *p* back-pointers, therefore at most *p* in-nodes).
@@ -41,7 +45,7 @@ update pointers of the predecessors.
 
 Whenever a recursion modification happens, the potential decrease (-2cp) cancels out with the $p \dot recursion$, thus the amortized cost is constant. Very clever!
 
-## Full persistence
+## Full Persistence
 Full persistence relies on a order-maintenance data structure in the future lecture, so that we can linearize a version tree by traversing the node:
 
 * It can insert item before/after a given node in O(1) time.  
@@ -61,9 +65,9 @@ In this case, the version tree should also be splitted at this point and some of
 So we need to recursively update *2d+2p+1* pointers. The potential function is $c\sum #empty mods. slots$. 
 The following analysis is similar to the partially persistence case and omitted.  
 
-De-amortize (Eric): O(1) worst-case slow down for partial persistence. For full persistent it is a open problem
+De-amortize (Eric): O(1) worst-case slow down for partial persistence. For full persistent it is a open problem.
 
-## Confluent persistence and functional persistence
+## Confluent Persistence and Functional Persistence
 For confluent persistence the versions forms a DAG. [3] gives an exponential reduction in space and time compared to the naive method. 
 I don't fully understand this part and there are still some open problems. 
 So I will just list the literatures [3, 4, 5] that Eric has mentioned in his class for further reference.
