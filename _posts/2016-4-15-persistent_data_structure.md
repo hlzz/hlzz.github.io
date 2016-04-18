@@ -9,7 +9,7 @@ knowing some general theoretic results and bringing up an algorithmic thinking w
 I would watch some of the lecture videos before going to bed and then write down some notes next morning. Let's get started!
 
 The first lecture concerns with persistent data structures. The topic is broad and I cannot grasp all the essence solely by watching the lectures. 
-Therefore some reference reading is necessary to catch up with the course. The following content is based on the lecture and some reference materials.
+Therefore, some reference reading is necessary to catch up with the course. The following content is based on the lecture and some reference materials.
 
 ## Four Types of Persistency [2]  
 
@@ -17,7 +17,7 @@ Therefore some reference reading is necessary to catch up with the course. The f
 
 * Fully persistent: both updates and queries are allowed on any version of the data structure.
 
-* Confluently persistent: can use combinators to combine input of more than one previous version to output a new single version.
+* Confluently persistent: can combine input of more than one previous version to output a new single version.
 
 * Functional persistent: never modify anything, only make new nodes. In a purely functional program all data is immutable, so all data structures are automatically fully persistent.
 
@@ -32,7 +32,7 @@ When we run out of space in a node, we create a new copy of the node and update 
 We must also store pointers to the new copy in all predecessors of the copied node in the newest version. The *mod* is of the form (version, field, value)
 Therefore, the cost is recursive because of this field update for all predecessors. Here I will follow the partial persistence version in Eric's class.
 
-**Partial persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made partially persistent with O(1) amorized factor over head 
+**Partial persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made partially persistent with O(1) amortized factor over head 
 plus O(1) space.
 
 **Proof**: The proof employs amortized analysis and potential method. There are two cases for modifying the field value: 
@@ -40,7 +40,7 @@ The potential function $\Phi$ is defined as $\Phi = c\sum #mods$.
 
 * 1) If the node is not full (a node can store up to *2p* mods), just record the mod, so the amortized cost is c + c (the actual cost plus the potential increase)
 
-* 2) If the node is full, make a new node and apply all the mods, update back pointers of the new node using the backpointers of the copied node, and recursively 
+* 2) If the node is full, make a new node and apply all the mods, update back pointers of the new node using the back-pointers of the copied node, and recursively 
 update pointers of the predecessors. 
 
 Whenever a recursion modification happens, the potential decrease (-2cp) cancels out with the $p \dot recursion$, thus the amortized cost is constant. Very clever!
@@ -56,19 +56,19 @@ Full persistence relies on a order-maintenance data structure in the future lect
 
 To read node.field at version v we now need to look at the mods that are the nearest ancestor to v. The full persistence theorem does not change too much: 
 
-**Full persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made full persistent with O(1) amorized factor over head 
+**Full persistence**: Any pointer-machine data structure with <= p = O(1) pointers to any node can be made full persistent with O(1) amortized factor over head 
 plus O(1) space.
 
 Now we need to store back-pointers for all versions. A node can store up to *2(d+p+1)* mods, where *d* is the maximum out-degree and *p* is the maximum in-degree.
-The update step is different from the partial persistence when the node is full. The old node is splitted into two nodes and then update pointers. 
-In this case, the version tree should also be splitted at this point and some of the pointers that points to the original nodes should now point to the new node. 
+The update step is different from the partial persistence when the node is full. The old node is split into two nodes and then update pointers. 
+In this case, the version tree should also be split at this point and some of the pointers that points to the original nodes should now point to the new node. 
 So we need to recursively update *2d+2p+1* pointers. The potential function is $c\sum #empty mods. slots$. 
 The following analysis is similar to the partially persistence case and omitted.  
 
-De-amortize (Eric): O(1) worst-case slow down for partial persistence. For full persistent it is a open problem.
+De-amortize (Eric): O(1) worst-case slow down for partial persistence. For full persistent it is an open problem.
 
 ## Confluent Persistence and Functional Persistence
-For confluent persistence the versions forms a DAG. [3] gives an exponential reduction in space and time compared to the naive method. 
+For confluent persistence the different versions form a DAG. [3] gives an exponential reduction in space and time compared to the naive method. 
 I don't fully understand this part and there are still some open problems. 
 So I will just list the literatures [3, 4, 5] that Eric has mentioned in his class for further reference.
 

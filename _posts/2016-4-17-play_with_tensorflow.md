@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Play with TensorFlow - Part I (初始Tensorflow - 谷歌深度学习框架)
+title: Play with TensorFlow - Part I (初识Tensorflow - 谷歌深度学习框架)
 ---
 
 I once developed intense interests in neural networks when I was an undergraduate. Though currently working on 3D reconstruction, 
-I am still amazed and inspired by the rapid advancements in the field of deep learning (think about DeepMind and Alphago). 
+I am still amazed and inspired by the rapid advancements in the field of deep learning (think about DeepMind and AlphaGo). 
 As Google recently open-sourced their deep learning framework [TensorFlow](https://www.tensorflow.org), which is under the active iterative development, I think it is a good time to pick up this old hobby. 
-One particular reason that propels me to look at this library at this very moment is perhaps the release of version 0.8, which has involved a great deal since its first release, and the additional support of distributed computing .
+One particular reason that propels me to look at this library at this very moment is perhaps the release of version 0.8, which has involved a great deal since its first release, and the additional support of distributed computing.
 In this post (and hopefully a series of following posts...), I will document my experience with this renowned library.
 
 ## Installation
-One thing I like frameworks and libraried provided by big companies is that the deployment and support work is nicely done. 
+One thing I like frameworks and libraries provided by big companies is that the deployment and support work is nicely done. 
 The installation process didn't take me too much efforts thanks to the detailed tutorial, only that I am using a Macbook and currently GPU support can't be enabled for OSX. 
 But hopefully it might be supported soon by them.
 
@@ -59,7 +59,7 @@ After 8500 epochs, it returns a CNN model with 0.8 validation and test error, co
 ## System Highlights
 After spending some time reading the initial whitepaper [1], I summarize some of the system highlights:
 
-* The TensorFlow computation is decribed by a directed graph, which is composed of a set of nodes.
+* The TensorFlow computation is described by a directed graph, which is composed of a set of nodes.
 
 * node: values that flow along normal edges
 
@@ -78,7 +78,7 @@ After spending some time reading the initial whitepaper [1], I summarize some of
 * Performance evaluation: they haven't provided such a benchmark comparison with other ML systems such as Caffe and Theano at this moment. But according to some external benchmark tests [2 - 4], it is claimed to have bad performance compared to other popular libraries. We cannot say too definitively on the performance issue since it is involving rapidly thanks to the huge community.
 
 ## A Brief Exploration of the Code
-TensorFlow uses [bazel](http://bazel.io) as the building tool, which is internally used by Google. It has several dependencies, e.g., [protobuf](https://github.com/google/protobuf) for data serializing, [grpc](https://github.com/grpc/grpc) for message passing in distributed computing, [Eigen3](http://eigen.tuxfamily.org) for matrix manipulation, the list goes on. The core lib directory is both giant and neat, containing the client interface distributed runtime, graph definitions, kernel-related (device) code, etc. I looked up the tensorflow website and found dozens of examples, but no roadmap or code structures for contributing. So in the future I might delve deeper into the code and find more details about the implementation. Stay tuned!
+TensorFlow uses [bazel](http://bazel.io) as the building tool, which is internally used by Google. It has several dependencies, e.g., [protobuf](https://github.com/google/protobuf) for data serializing, [grpc](https://github.com/grpc/grpc) for message passing in distributed computing, [Eigen3](http://eigen.tuxfamily.org) for matrix manipulation, the list goes on. The core lib directory is both giant and neat, containing the client interface distributed runtime, graph definitions, kernel-related (device) code, etc. I looked up the TensorFlow website and found dozens of examples, but no roadmap or code structures for contributing. So in the future I might delve deeper into the code and find more details about the implementation. Stay tuned!
 
 ## Reference
 [1] TensorFlow whitepaper: Abadi, Martın, et al. "TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems." arXiv preprint arXiv:1603.04467 (2016)

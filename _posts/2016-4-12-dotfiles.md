@@ -3,7 +3,7 @@ layout: post
 title: Use Github as the system backup - My dotfiles   (在Github中备份系统设置 - 我的dotfile配置)
 ---
 
-In less than two weeks, I broke my operating system, twice. As a programmer, we all know it is a extremely painful process to re-install all the dependencies, set up configurations, etc. However, we have to face such disasters now and then. I erroneously remove "libglib*" when I tried to install gimp, the alternative of Photoshop on Linux. Unfortunately, it is notoriously difficult to build from source, which is another long story. However, I am a little bit luckier this time because I started to document part of my working enviroments since my hard disk broke down two weeks ago (remember I told you that I broke my OS twice in two weeks, sad story...). 
+In less than two weeks, I broke my operating system, twice. As a programmer, we all know it is a extremely painful process to re-install all the dependencies, set up configurations, etc. However, we have to face such disasters now and then. I erroneously remove "libglib*" when I tried to install gimp, the alternative of Photoshop on Linux. Unfortunately, it is notoriously difficult to build from source, which is another long story. However, I am a little bit luckier this time because I started to document part of my working environments since my hard disk broke down two weeks ago (remember I told you that I broke my OS twice in two weeks, sad story...). 
 
 ![]({{ site.baseurl }}/images/project_dotfiles.png)
 
@@ -16,7 +16,7 @@ rsync -av vim ~/    # copy the new one
 mv ~/vim ~/.vim     # change the folder name
 ```
 
-Below are the vim addons that it automically installs:  
+Below are the vim add-ons that it automatically installs:  
 
 * ctrlsf.vim: An ack/ag/pt powered code search and view tool.  
 
@@ -31,4 +31,4 @@ Below are the vim addons that it automically installs:
 * vimprj: Plugin for managing options for different projects.  
 
 
-For more instructions head over to the [dotfiles](https://github.com/hlzz/dotfiles) on GitHub.
+For more instructions, head over to the [dotfiles](https://github.com/hlzz/dotfiles) on GitHub.
