@@ -2,7 +2,6 @@
 layout: post
 title: Play with TensorFlow - Part I (初识Tensorflow - 谷歌深度学习框架)
 ---
-
 I once developed intense interests in neural networks when I was an undergraduate. Though currently working on 3D reconstruction, 
 I am still amazed and inspired by the rapid advancements in the field of deep learning (think about DeepMind and AlphaGo). 
 As Google recently open-sourced their deep learning framework [TensorFlow](https://www.tensorflow.org), which is under the active iterative development, I think it is a good time to pick up this old hobby. 
