@@ -1,0 +1,321 @@
+---
+layout: post
+title: Blender Development Series 2 - Delve into Code Base (Blender GSoC 2016 开发日志 2)
+---
+After playing with Blender for nearly two weeks, I had the feeling that Blender is such a huge project.
+But how do you eat an elephant? That's right, bite by bite!
+Though it contains millions of lines of C\C++\Python code, its well-organized structure and neat code style pretty much ease the pain of navigating a huge codebase.
+Besides, we have a powerful weapon at hand, that is the [Blender\Python API](https://www.blender.org/api/blender_python_api_2_77_0/).
+Let's see how we can track the functioning C++ code from the Python script entry point. 
+
+## Tracking Down the Stack
+
+### What is Blender Python API?
+Generally speaking, Blender is a complicated 3D modeling\mesh processing\movie editing\game engine (add whatever terms you like...) system written mainly in C\C++. Meanwhile a powerful python scripting system is readily available for users to customize the UI layout, edit data and user preferences, automate a complicated process and extend the functionalities of Blender. 
+At the startup, the python scripts in *`blender/release/scripts/startup/bl_ui`* and *`blender/release/scripts/startup/bl_operators`* will be loaded. The previous folder contains scripts that define the default layout while the latter folder contains *operators*. Operator is an important concept in Blender. 
+There are operators written by python code, like the ones in the *bl_operators* folder, and also operators defined in C. 
+The python API is generated via the RNA code (have a look at the [python entry point](https://developer.blender.org/diffusion/B/browse/master/source/blender/python/intern/bpy_rna.c$7793)) and can only use limited python API, while C operators have full access to C APIs. A quickstart guide of how to work with Blender\Python can be found [here](https://www.blender.org/api/blender_python_api_2_77_0/info_quickstart.html).
+
+
+I haven't explained what DNA/RNA is but there are a lot of [documentations](https://wiki.blender.org/index.php/Dev:Source/Architecture) for you to read.
+Let's now just put those aside and have a straightforward feeling about how a operator works from the inside out. 
+
+### Motion Tracking - Solve Camera 
+I will use a concrete operator to illustrate the process of solving the camera motion. The operator resides in `source/blender/editors/space_clip/tracking_ops_solve.c`, which is the place for many C operators related to motion tracking solver:
+
+```c
+void CLIP_OT_solve_camera(wmOperatorType *ot)
+{
+    /* identifiers */
+    ot->name = "Solve Camera";
+    ot->description = "Solve camera motion from tracks";
+    ot->idname = "CLIP_OT_solve_camera";
+
+    /* api callbacks */
+    ot->exec = solve_camera_exec;           // -> zoom in!
+    ot->invoke = solve_camera_invoke;
+    ot->modal = solve_camera_modal;
+    ot->poll = ED_space_clip_tracking_poll;
+
+    /* flags */
+    ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO;
+}
+```
+
+This operator code snippet basic defines what the operator is, and which functions should be invoked. 
+The *wmOperatorType* struct made very clear what its members means.
+
+(exec)
+
+    /* this callback executes the operator without any interactive input,
+     * parameters may be provided through operator properties. cannot use
+     * any interface code or input device state.
+     * - see defines below for return values */
+
+(invoke, modal)
+
+    /* for modal temporary operators, initially invoke is called. then
+     * any further events are handled in modal. if the operation is
+     * canceled due to some external reason, cancel is called
+     * - see defines below for return values */
+
+(poll)
+
+    /* verify if the operator can be executed in the current context, note
+     * that the operator might still fail to execute even if this return true */
+
+This function is the registering code for "solve_camera". The actual code is executing in *solve_camera_exec* function.
+Let's zoom into *solve_camera_exec* to see what's going on under the hood.
+
+```c
+static int solve_camera_exec(bContext *C, wmOperator *op)
+{
+    SolveCameraJob *scj;
+    char error_msg[256] = "\0";
+    scj = MEM_callocN(sizeof(SolveCameraJob), "SolveCameraJob data");
+    if (!solve_camera_initjob(C, scj, op, error_msg, sizeof(error_msg))) {
+        if (error_msg[0]) {
+            BKE_report(op->reports, RPT_ERROR, error_msg);
+        }
+        solve_camera_freejob(scj);
+        return OPERATOR_CANCELLED;
+    }
+    solve_camera_startjob(scj, NULL, NULL, NULL);   // -> zoom in!
+    solve_camera_freejob(scj);
+    return OPERATOR_FINISHED;
+}
+```
+
+```c
+static void solve_camera_startjob(void *scv, short *stop, short *do_update, float *progress)
+{
+    SolveCameraJob *scj = (SolveCameraJob *)scv;
+    BKE_tracking_reconstruction_solve(scj->context,     // -> zoom in!
+                                      stop,
+                                      do_update,
+                                      progress,
+                                      scj->stats_message,
+                                      sizeof(scj->stats_message));
+}
+```
+
+
+I have to add a bit of comments here. 
+*BKE_tracking_reconstruction_solve*, which solves camera motion and reconstruct 3D markders from a prepared reconstruction context, is the last interface in Blender/Kernel before entering the libmv library. 
+It firstly retrieve the context from the Blender side and convert it into libmv context format, then execute the libmv code. 
+
+```c
+void BKE_tracking_reconstruction_solve(MovieReconstructContext *context, short *stop, short *do_update,
+                                       float *progress, char *stats_message, int message_size)
+{
+    float error;
+
+    ReconstructProgressData progressdata;
+
+    libmv_ReconstructionOptions reconstruction_options;
+
+    progressdata.stop = stop;
+    progressdata.do_update = do_update;
+    progressdata.progress = progress;
+    progressdata.stats_message = stats_message;
+    progressdata.message_size = message_size;
+
+    reconstructionOptionsFromContext(&reconstruction_options, context);
+
+    if (context->motion_flag & TRACKING_MOTION_MODAL) {
+        context->reconstruction = libmv_solveModal(context->tracks,             // -> zoom in!
+                                                   &context->camera_intrinsics_options,
+                                                   &reconstruction_options,
+                                                   reconstruct_update_solve_cb, &progressdata);
+    }
+    else {
+        context->reconstruction = libmv_solveReconstruction(context->tracks,    // -> zoom in!
+                                                            &context->camera_intrinsics_options,
+                                                            &reconstruction_options,
+                                                            reconstruct_update_solve_cb, &progressdata);
+
+        if (context->select_keyframes) {
+            /* store actual keyframes used for reconstruction to update them in the interface later */
+            context->keyframe1 = reconstruction_options.keyframe1;
+            context->keyframe2 = reconstruction_options.keyframe2;
+        }
+    }
+
+    error = libmv_reprojectionError(context->reconstruction);
+
+    context->reprojection_error = error;
+}
+```
+
+As we can see, there are two reconstruction choices: *libmv_solveModal* and *libmv_solveReconstruction*. 
+I just post them both. Here we have entered the libmv codebase.
+
+libmv_solveReconstruction:
+
+```c
+libmv_Reconstruction *libmv_solveReconstruction(
+    const libmv_Tracks* libmv_tracks,
+    const libmv_CameraIntrinsicsOptions* libmv_camera_intrinsics_options,
+    libmv_ReconstructionOptions* libmv_reconstruction_options,
+    reconstruct_progress_update_cb progress_update_callback,
+    void* callback_customdata) {
+  libmv_Reconstruction *libmv_reconstruction =
+    LIBMV_OBJECT_NEW(libmv_Reconstruction);
+
+  Tracks &tracks = *((Tracks *) libmv_tracks);
+  EuclideanReconstruction &reconstruction =
+    libmv_reconstruction->reconstruction;
+
+  ReconstructUpdateCallback update_callback =
+    ReconstructUpdateCallback(progress_update_callback,
+                              callback_customdata);
+
+  /* Retrieve reconstruction options from C-API to libmv API. */
+  CameraIntrinsics *camera_intrinsics;
+  camera_intrinsics = libmv_reconstruction->intrinsics =
+    libmv_cameraIntrinsicsCreateFromOptions(libmv_camera_intrinsics_options);
+
+  /* Invert the camera intrinsics/ */
+  Tracks normalized_tracks;
+  libmv_getNormalizedTracks(tracks, *camera_intrinsics, &normalized_tracks);
+
+  /* keyframe selection. */
+  int keyframe1 = libmv_reconstruction_options->keyframe1,
+      keyframe2 = libmv_reconstruction_options->keyframe2;
+
+  if (libmv_reconstruction_options->select_keyframes) {
+    LG << "Using automatic keyframe selection";
+
+    update_callback.invoke(0, "Selecting keyframes");
+
+    selectTwoKeyframesBasedOnGRICAndVariance(tracks,
+                                             normalized_tracks,
+                                             *camera_intrinsics,
+                                             keyframe1,
+                                             keyframe2);
+
+    /* so keyframes in the interface would be updated */
+    libmv_reconstruction_options->keyframe1 = keyframe1;
+    libmv_reconstruction_options->keyframe2 = keyframe2;
+  }
+
+  /* Actual reconstruction. */
+  LG << "frames to init from: " << keyframe1 << " " << keyframe2;
+
+  libmv::vector<Marker> keyframe_markers =
+    normalized_tracks.MarkersForTracksInBothImages(keyframe1, keyframe2);
+
+  LG << "number of markers for init: " << keyframe_markers.size();
+
+  if (keyframe_markers.size() < 8) {
+    LG << "No enough markers to initialize from";
+    libmv_reconstruction->is_valid = false;
+    return libmv_reconstruction;
+  }
+
+  update_callback.invoke(0, "Initial reconstruction");
+
+  EuclideanReconstructTwoFrames(keyframe_markers, &reconstruction);
+  EuclideanBundle(normalized_tracks, &reconstruction);
+  EuclideanCompleteReconstruction(normalized_tracks,
+                                  &reconstruction,
+                                  &update_callback);
+
+  /* Refinement/ */
+  if (libmv_reconstruction_options->refine_intrinsics) {
+    libmv_solveRefineIntrinsics(
+                                tracks,
+                                libmv_reconstruction_options->refine_intrinsics,
+                                libmv::BUNDLE_NO_CONSTRAINTS,
+                                progress_update_callback,
+                                callback_customdata,
+                                &reconstruction,
+                                camera_intrinsics);
+  }
+
+  /* Set reconstruction scale to unity. */
+  EuclideanScaleToUnity(&reconstruction);
+
+  /* Finish reconstruction. */
+  finishReconstruction(tracks,
+                       *camera_intrinsics,
+                       libmv_reconstruction,
+                       progress_update_callback,
+                       callback_customdata);
+
+  libmv_reconstruction->is_valid = true;
+  return (libmv_Reconstruction *) libmv_reconstruction;
+}
+```
+
+libmv_solveModal:
+
+```c
+libmv_Reconstruction *libmv_solveModal(
+    const libmv_Tracks *libmv_tracks,
+    const libmv_CameraIntrinsicsOptions *libmv_camera_intrinsics_options,
+    const libmv_ReconstructionOptions *libmv_reconstruction_options,
+    reconstruct_progress_update_cb progress_update_callback,
+    void *callback_customdata) {
+  libmv_Reconstruction *libmv_reconstruction =
+    LIBMV_OBJECT_NEW(libmv_Reconstruction);
+
+  Tracks &tracks = *((Tracks *) libmv_tracks);
+  EuclideanReconstruction &reconstruction =
+    libmv_reconstruction->reconstruction;
+
+  ReconstructUpdateCallback update_callback =
+    ReconstructUpdateCallback(progress_update_callback,
+                              callback_customdata);
+
+  /* Retrieve reconstruction options from C-API to libmv API. */
+  CameraIntrinsics *camera_intrinsics;
+  camera_intrinsics = libmv_reconstruction->intrinsics =
+    libmv_cameraIntrinsicsCreateFromOptions(
+                                            libmv_camera_intrinsics_options);
+
+  /* Invert the camera intrinsics. */
+  Tracks normalized_tracks;
+  libmv_getNormalizedTracks(tracks, *camera_intrinsics, &normalized_tracks);
+
+  /* Actual reconstruction. */
+  ModalSolver(normalized_tracks, &reconstruction, &update_callback);
+
+  PolynomialCameraIntrinsics empty_intrinsics;
+  EuclideanBundleCommonIntrinsics(normalized_tracks,
+                                  libmv::BUNDLE_NO_INTRINSICS,
+                                  libmv::BUNDLE_NO_TRANSLATION,
+                                  &reconstruction,
+                                  &empty_intrinsics);
+
+  /* Refinement. */
+  if (libmv_reconstruction_options->refine_intrinsics) {
+    libmv_solveRefineIntrinsics(
+                                tracks,
+                                libmv_reconstruction_options->refine_intrinsics,
+                                libmv::BUNDLE_NO_TRANSLATION,
+                                progress_update_callback, callback_customdata,
+                                &reconstruction,
+                                camera_intrinsics);
+  }
+
+  /* Finish reconstruction. */
+  finishReconstruction(tracks,
+                       *camera_intrinsics,
+                       libmv_reconstruction,
+                       progress_update_callback,
+                       callback_customdata);
+
+  libmv_reconstruction->is_valid = true;
+  return (libmv_Reconstruction *) libmv_reconstruction;
+}
+```
+
+The two functions differ in that *libmv_solveReconstruction* does a more serious reconstruction and recover both the camera motion and 3D tracks, while *libmv_solveModal* solves such camera motion as tripod rotation and reconstruct only camera motion itself.
+You may need a bit of 3D computer vision knowledge to follow the code.
+
+## Conclusions
+
+This article is based on the codebase of Blender 2.77, which basically shows you how to navigate in the Blender codebase. 
+As the motion tracking system currently has limited documentation, directly playing with the code is a good way of getting your feet wet. 
+Let's dive into Blender!
