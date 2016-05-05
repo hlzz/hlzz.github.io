@@ -311,7 +311,7 @@ libmv_Reconstruction *libmv_solveModal(
 }
 ```
 
-The two functions differ in that *libmv_solveReconstruction* does a more serious reconstruction and recover both the camera motion and 3D tracks, while *libmv_solveModal* solves such camera motion as tripod rotation and reconstruct only camera motion itself.
+The two functions differ in that *libmv_solveReconstruction* does a more serious reconstruction and recovers both the camera motion and 3D tracks, while *libmv_solveModal* solves such camera motion as tripod rotation and reconstructs only camera motion itself.
 You may need a bit of 3D computer vision knowledge to follow the code.
 
 ## Conclusions
