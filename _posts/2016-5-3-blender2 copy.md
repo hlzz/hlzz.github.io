@@ -321,8 +321,8 @@ In Blender there is something so called [DNA](https://wiki.blender.org/index.php
 
 You can think of *DNA* as the .blend file when you hit 'save'. The DNA code is in *`source/blender/makesdna`*. 
 As for the motion tracking section, track files are *DNA_tracking_types.h* and *DNA_movieclip_types.h*.
-Operators are usually in files which contains *ops*, which are higher-level UI things
-Sometimes they interact with DNA directly, sometimes via some lower-level utilities, for which we can find them in *`source/blender/blenkernel/intern/tracking`*
+Operators are usually in files which contains *ops*, which are higher-level UI things.
+Sometimes they interact with DNA directly, sometimes via some lower-level utilities, for which we can find them in *`source/blender/blenkernel/intern/tracking`*.
 And it's actually all up to *`blenkernel/intern/tracking`* to talk to Libmv.
 
 This article is based on the codebase of Blender 2.77, which basically shows you how to navigate in the Blender codebase by the example of motion tracking solver. 
