@@ -43,7 +43,7 @@ void CLIP_OT_solve_camera(wmOperatorType *ot)
 ```
 
 This operator code snippet basic defines what the operator is, and which functions should be invoked. 
-The *wmOperatorType* struct made very clear what its members means.
+The *wmOperatorType* struct made very clear what its members means, in the comments of its header file (*WM_types.h*).
 
 (exec)
 
@@ -102,7 +102,7 @@ static void solve_camera_startjob(void *scv, short *stop, short *do_update, floa
 
 I have to add a bit of comments here. 
 *BKE_tracking_reconstruction_solve*, which solves camera motion and reconstruct 3D markders from a prepared reconstruction context, is the last interface in Blender/Kernel before entering the libmv library. 
-It firstly retrieve the context from the Blender side and convert it into libmv context format, then execute the libmv code. 
+It firstly retrieves the context from the Blender side and converts it into libmv context format, then executes the libmv code. 
 
 ```c
 void BKE_tracking_reconstruction_solve(MovieReconstructContext *context, short *stop, short *do_update,
@@ -316,6 +316,15 @@ You may need a bit of 3D computer vision knowledge to follow the code.
 
 ## Conclusions
 
-This article is based on the codebase of Blender 2.77, which basically shows you how to navigate in the Blender codebase. 
+Typically, the operators are organized in the way similar to the process I have showed above. 
+In Blender there is something so called [DNA](https://wiki.blender.org/index.php/Dev:Source/Architecture/SDNA_Notes), which is the actual data that Blender operates on. DNA, the actual data, is exposed to the interface using so called RNA, the set of rules that define what is exposable and what happens when value gets updated and so. UI operates on data via *Operators*. For example, when you place a new tracker on the footage, the interface actually invokes *AddMarker* operator which modifies DNA (by adding a new object).
+
+You can think of *DNA* as the .blend file when you hit 'save'. The DNA code is in *`source/blender/makesdna`*. 
+As for the motion tracking section, track files are *DNA_tracking_types.h* and *DNA_movieclip_types.h*.
+Operators are usually in files which contains *ops*, which are higher-level UI things
+Sometimes they interact with DNA directly, sometimes via some lower-level utilities, for which we can find them in *`source/blender/blenkernel/intern/tracking`*
+And it's actually all up to *`blenkernel/intern/tracking`* to talk to Libmv.
+
+This article is based on the codebase of Blender 2.77, which basically shows you how to navigate in the Blender codebase by the example of motion tracking solver. 
 As the motion tracking system currently has limited documentation, directly playing with the code is a good way of getting your feet wet. 
 Let's dive into Blender!
