@@ -7,6 +7,8 @@ title: Recent Papers in 3D Computer Vision
 **  - related
 *** - very much related 
 
+Lists and details to be extended...
+
 ---
 
 ![]({{ site.baseurl }}/images/cvpr2016.png)
@@ -16,7 +18,7 @@ title: Recent Papers in 3D Computer Vision
 ### Reconstruction:
 * ***Vo, M., Narasimhan, S. G., & Sheikh, Y. Spatiotemporal Bundle Adjustment for Dynamic 3D Reconstruction.
 
-<http://www.cs.cmu.edu/~ILIM/projects/IM/STBA/>
+*[Project website](http://www.cs.cmu.edu/~ILIM/projects/IM/STBA/), 强烈推荐[video](https://www.youtube.com/watch?v=2m5-IS_xsno)，演员十分癫狂...*
 
 * Hao Wang, Jun Wang, Wang Liang. Online Reconstruction of Indoor Scenes From RGB-D Streams.
 
