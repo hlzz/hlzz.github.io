@@ -26,24 +26,69 @@ Lists and details to be extended...
 
 * Olivier Saurer, Marc Pollefeys, Gim Hee Lee. Sparse to Dense 3D Reconstruction From Rolling Shutter Images.
 
+* **Filip Radenovic, Johannes L. Schönberger, Dinhuang Ji, Jan-Michael Frahm, Ondrej Chum, Jiri Matas. From Dusk till Dawn: Modeling in the Dark
+
+*A method to cope with illumination changes in Internet dataset. After camera registration, a clustering method is applied and seperate the scene graph into the Day cluster and the Night cluster. Dense models are reconstruction seperately, following a fusion process. (sparse -> dense)*
+
 ### Structure-from-Motion:
+
+* ***Johannes L. Schönberger, Jan-Michael Frahm. Structure-From-Motion Revisited.
+
+[Code](https://colmap.github.io)
+
 * A Consensus-Based Framework for Distributed Bundle Adjustment. (no paper yet)
 
 * A Direct Least-Squares Solution to the PnP Problem With Unknown Focal Length. (no paper yet)
 
 * [Mirror Surface Reconstruction under an Uncalibrated Camera](http://i.cs.hku.hk/~kykwong/publications/khan_cvpr16.pdf)
 
+* Marco Crocco, Cosimo Rubino, Alessio Del Bue. Structure From Motion With Objects.
+
 ### Feature and Correspondence:
 * [Using Spatial Order to Boost the Elimination of Incorrect Feature Matches](http://www.faculty.idc.ac.il/moses/papers/UsingSpatialOrderCameraReady.pdf) 
 
-* Angjoo Kanazawa, David W. Jacobs, Manmohan Chandraker. WarpNet: Weakly Supervised Matching for Single-View Reconstruction.
+* ***Tsun-Yi Yang, Yen-Yu Lin, Yung-Yu Chuang. Accumulated Stability Voting - A Robust Descriptor From Descriptors of Multiple Scales.
+
+[Project website](http://shamangary.logdown.com/posts/587520): worth trying since there is [code](https://github.com/shamangary/ASV) available.
+
+* Swarna K. Ravindran, Anurag Mittal. CoMaL - Good Features to Match on Object Boundaries.
+
+* Yuan-Ting Hu, Yen-Yu Lin. Progressive Feature Matching With Alternate Descriptor Selection and Correspondence Enrichment.
+
+* Angjoo Kanazawa, David W. Jacobs, Manmohan Chandraker. WarpNet: Weakly Supervised Matching for Single-View Reconstruction. (DL)
 
 * Jin Xie, Meng Wang, Yi Fang. Learned Binary Spectral Shape Descriptor for 3D Shape Correspondence.
 
+### Retrieval:
+
+* Haomiao Liu, Ruiping Wang, Shiguang Shan, Xilin Chen. Deep Supervised Hashing for Fast Image Retrieval. (DL)
+
+* Eng-Jon Ong, Miroslaw Bober. Improved Hamming Distance Search Using Variable Length Substrings.
+
+* Jae-Pil Heo, Zhe Lin, Xiaohui Shen, Jonathan Brandt, Sung-eui Yoon. Shortlist Selection With Residual-Aware Distance Estimator for K-Nearest Neighbor Search.
+
+* Xiaojuan Wang, Ting Zhang, Guo-Jun Qi, Jinhui Tang, Jingdong Wang. Supervised Quantization for Similarity Search .
+
+* Patrick Wieschollek, Oliver Wang, Alexander Sorkine-Hornung, Hendrik P. A. Lensch. Efficient Large-Scale Approximate Nearest Neighbor Search on the GPU.
+
+* Ting Zhang, Jingdong Wang. Collaborative Quantization for Cross-Modal Similarity Search.
+
+* Thi Quynh Nhi Tran, Hervé Le Borgne, Michel Crucianu. Aggregating Image and Text Quantized Correlated Components.
+
+* Artem Babenko, Victor Lempitsky. Efficient Indexing of Billion-Scale Datasets of Deep Descriptors.
+
+* ***Ahmet Iscen, Michael Rabbat, Teddy Furon. Efficient Large-Scale Similarity Search Using Matrix Factorization.
+
+* Theodora Kontogianni, Markus Mathias, Bastian Leibe. Incremental Object Discovery in Time-Varying Image Collections.
+
 ### Stereo:
-* Alex Locher, Michal Perdoch, Luc Van Gool. Progressive Prioritized Multi-View Stereo.
+* Alex Locher, Michal Perdoch, Luc Van Gool. Progressive Prioritized Multi-View Stereo. (no paper yet)
 
 * Cédric Verleysen, Christophe De Vleeschouwer. Piecewise-Planar 3D Approximation From Wide-Baseline Stereo.
+
+* John Flynn, Ivan Neulander, James Philbin, Noah Snavely. DeepStereo: Learning to Predict New Views From the World’s Imagery.
+
+*Accepted in CVPR 2016 but released a year ago (2015), see the [video](https://www.youtube.com/watch?v=cizgVZ8rjKA)*
 
 ### Segmentation and Scene Understanding:
 * Ole Johannsen, Antonin Sulc, Bastian Goldluecke. What Sparse Light Field Coding Reveals About Scene Structure.
@@ -90,7 +135,11 @@ Lists and details to be extended...
 
 * Johannsen, O., Sulc, A., & Goldluecke, B. (2015). On Linear Structure from Motion for Light Field Cameras. 
 
-*An application of [Lytro](https://www.lytro.com) cinema.
+*An application of [Lytro](https://www.lytro.com) cinema.*
+
+* Cui, Zhaopeng, and Ping Tan. "Global Structure-from-Motion by Similarity Averaging." 
+
+*Yet another global method for SfM*
 
 ### Stereo
 * Benjamin Ummenhofer and Thomas Brox. Global, Dense Multiscale Reconstruction for a Billion Points.
