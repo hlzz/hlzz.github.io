@@ -36,7 +36,7 @@ Lists and details to be extended...
 
 [Code](https://colmap.github.io)
 
-* A Consensus-Based Framework for Distributed Bundle Adjustment. (no paper yet)
+* [A Consensus-Based Framework for Distributed Bundle Adjustment](http://roboticvision.org/~anders/papers/eriksson-etal-cvpr-2016.pdf)
 
 * A Direct Least-Squares Solution to the PnP Problem With Unknown Focal Length. (no paper yet)
 
@@ -207,6 +207,10 @@ Lists and details to be extended...
 * ***Li, Xinchao, Martha Larson, and Alan Hanjalic. "Pairwise geometric matching for large-scale object retrieval."
 
 * Jiang, Ke, Qichao Que, and Brian Kulis. "Revisiting kernelized locality-sensitive hashing for improved large-scale image retrieval." 
+
+* **Johnson, Justin, et al. "Image retrieval using scene graphs." Computer Vision and Pattern Recognition (CVPR), 2015.
+
+sementic image retrieval
 
 ### 3D with Sensors:
 * Ye, M., Zhang, Y., Yang, R., & Manocha, D. "3d reconstruction in the presence of glasses by acoustic and stereo fusion."
