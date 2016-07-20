@@ -38,7 +38,7 @@ Lists and details to be extended...
 
 * [A Consensus-Based Framework for Distributed Bundle Adjustment](http://roboticvision.org/~anders/papers/eriksson-etal-cvpr-2016.pdf)
 
-* A Direct Least-Squares Solution to the PnP Problem With Unknown Focal Length. (no paper yet)
+* A Direct Least-Squares Solution to the PnP Problem With Unknown Focal Length. 
 
 * [Mirror Surface Reconstruction under an Uncalibrated Camera](http://i.cs.hku.hk/~kykwong/publications/khan_cvpr16.pdf)
 
@@ -58,6 +58,10 @@ Lists and details to be extended...
 * Angjoo Kanazawa, David W. Jacobs, Manmohan Chandraker. WarpNet: Weakly Supervised Matching for Single-View Reconstruction. (DL)
 
 * Jin Xie, Meng Wang, Yi Fang. Learned Binary Spectral Shape Descriptor for 3D Shape Correspondence.
+
+* Zhou, Tinghui, et al. "Learning Dense Correspondence via 3D-guided Cycle Consistency." (DL)
+
+[Project page](http://people.eecs.berkeley.edu/~tinghuiz/projects/learnCycle/)
 
 ### Retrieval:
 
@@ -82,7 +86,9 @@ Lists and details to be extended...
 * Theodora Kontogianni, Markus Mathias, Bastian Leibe. Incremental Object Discovery in Time-Varying Image Collections.
 
 ### Stereo:
-* Alex Locher, Michal Perdoch, Luc Van Gool. Progressive Prioritized Multi-View Stereo. (no paper yet)
+* Alex Locher, Michal Perdoch, Luc Van Gool. Progressive Prioritized Multi-View Stereo.
+
+[code](https://github.com/alexlocher/hpmvs)
 
 * Cédric Verleysen, Christophe De Vleeschouwer. Piecewise-Planar 3D Approximation From Wide-Baseline Stereo.
 
@@ -155,6 +161,8 @@ Lists and details to be extended...
 * Ikehata, S., Yang, H., & Furukawa, Y. (2015). Structured Indoor Modeling. 
 
 *[Project website](http://www.cse.wustl.edu/~sikehata/sim/), with matlab code and datasets.*
+
+* Zheng, Enliang, et al. Minimal Solvers for 3D Geometry from Satellite Imagery. 
 
 ### Pose, Point Cloud & Others
 * Katz, S., & Tal, A. (2015). On the Visibility of Point Clouds. 
