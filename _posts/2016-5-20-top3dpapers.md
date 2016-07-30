@@ -11,6 +11,35 @@ Lists and details to be extended...
 
 ---
 
+![]({{ site.baseurl }}/images/eccv2016.png)
+
+**Update (July 30, 2016): ECCV 2016 is coming! Though the full accepted paper list has not been released, I have collected some new papers released by authors via homepages and Arxiv. Of course, they are all related to 3D computer vision.**
+
+## ECCV 2016
+
+### Structure-from-Motion:
+* Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Strucutre-from-Motion](https://home.cse.ust.hk/~tshenaa/files/eccv2016_graph_match.pdf).
+
+*As you have noticed, this is my paper :). We propose a new method of matching image collections for SfM, which improves the matching efficiency as well as coping with ambiguous scenes.*
+
+### Stereo:
+* [Efficient Multi-view Surface Refinement with Adaptive Resolution Control](http://home.cse.ust.hk/~slibc/pdf/arc.pdf)
+
+*This is kind of a promotion for my friend and labmate Shiwei's work. They have done excellent work on multi-view stereo which powers the 3D reconstruction engine of [Altizure](https://www.altizure.com/explore), take a look the paper if you are interested:).*
+
+* [Pixelwise View Selection for Unstructured Multi-View Stereo](http://people.inf.ethz.ch/jschoenb/papers/schoenberger2016mvs.pdf)
+
+*The results are quite impressive, including a [video](https://www.youtube.com/watch?v=GRW2APWn9wY) for demonstration.*
+
+### Reconstruction:
+
+* Indoor-Outdoor 3D Reconstruction Alignment
+
+### Feature and Matching:
+* [LIFT: Learned Invariant Feature Transform](http://arxiv.org/abs/1603.09114) (DL)
+
+---
+
 ![]({{ site.baseurl }}/images/cvpr2016.png)
 
 ## CVPR 2016
@@ -44,7 +73,7 @@ Lists and details to be extended...
 
 * Marco Crocco, Cosimo Rubino, Alessio Del Bue. Structure From Motion With Objects.
 
-### Feature and Correspondence:
+### Feature and Matching:
 * [Using Spatial Order to Boost the Elimination of Incorrect Feature Matches](http://www.faculty.idc.ac.il/moses/papers/UsingSpatialOrderCameraReady.pdf) 
 
 * ***Tsun-Yi Yang, Yen-Yu Lin, Yung-Yu Chuang. Accumulated Stability Voting - A Robust Descriptor From Descriptors of Multiple Scales.
