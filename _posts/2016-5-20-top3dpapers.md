@@ -18,7 +18,7 @@ Lists and details to be extended...
 ## ECCV 2016
 
 ### Structure-from-Motion:
-* Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Strucutre-from-Motion](https://home.cse.ust.hk/~tshenaa/files/eccv2016_graph_match.pdf).
+* Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Strucutre-from-Motion](https://home.cse.ust.hk/~tshenaa/files/pub/eccv2016_graph_match.pdf).
 
 *As you have noticed, this is my paper :). We propose a new method of matching image collections for SfM, which improves the matching efficiency as well as coping with ambiguous scenes.*
 
@@ -37,6 +37,8 @@ Lists and details to be extended...
 
 ### Feature and Matching:
 * [LIFT: Learned Invariant Feature Transform](http://arxiv.org/abs/1603.09114) (DL)
+
+*This is a very interesting work that obtains local feature with deep neural nets. I am looking forward to the code.*
 
 ---
 
