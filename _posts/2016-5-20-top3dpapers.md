@@ -18,9 +18,9 @@ Lists and details to be extended...
 ## ECCV 2016
 
 ### Structure-from-Motion:
-* Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Strucutre-from-Motion](https://home.cse.ust.hk/~tshenaa/files/pub/eccv2016_graph_match.pdf).
+* Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Structure-from-Motion](https://home.cse.ust.hk/~tshenaa/files/pub/eccv2016_graph_match.pdf).
 
-*As you have noticed, this is my paper :). We propose a new method of matching image collections for SfM, which improves the matching efficiency as well as coping with ambiguous scenes.*
+*As you have noticed, this is my paper :). We propose a new method of matching image collections for SfM, which improves the matching efficiency as well as coping with ambiguous scenes. Leave a comment (at the bottom of this page) if you are interested.*
 
 ### Stereo:
 * [Efficient Multi-view Surface Refinement with Adaptive Resolution Control](http://home.cse.ust.hk/~slibc/pdf/arc.pdf)
