@@ -13,14 +13,40 @@ Lists and details to be extended...
 
 ![]({{ site.baseurl }}/images/eccv2016.png)
 
-**Update (July 30, 2016): ECCV 2016 is coming! Though the full accepted paper list has not been released, I have collected some new papers released by authors via homepages and Arxiv. Of course, they are all related to 3D computer vision.**
-
 ## ECCV 2016
 
-### Structure-from-Motion:
+### Structure-from-Motion and Pose Estimation:
 * Tianwei Shen, Siyu Zhu, Tian Fang, Runze Zhang, Long Quan, [Graph-Based Consistent Matching for Structure-from-Motion](https://home.cse.ust.hk/~tshenaa/files/pub/eccv2016_graph_match.pdf).
 
 *As you have noticed, this is my paper :). We propose a new method of matching image collections for SfM, which improves the matching efficiency as well as coping with ambiguous scenes. Leave a comment (at the bottom of this page) if you are interested.*
+
+* Je Hyeong Hong, Christopher Zach, Andrew Fitzgibbon, Roberto Cipolla. Projective Bundle Adjustment from Arbitrary Initialization using the Variable Projection Method.
+
+* Jonathan Ventura. Structure from Motion on a Sphere.
+
+* Gaku Nakano. A Versatile Approach for Solving PnP, PnPf, and PnPfr Problems.
+
+* Cenek Albl, Akihiro Sugimoto, Tomas Pajdla, Degeneracies in Rolling Shutter SfM.
+
+* Gim Hee Lee. A Minimal Solution for Non-Perspective Pose Estimation from Line Correspondences.
+
+* Federico Camposeco, Torsten Sattler, Marc Pollefeys, Minimal Solvers for Generalized Pose and Scale Estimation from Two Rays and One Point.
+
+* Pose Estimation Errors, the Ultimate Diagnosis.
+
+* Kyle Wilson, David Bindel, Noah Snavely. When is Rotations Averaging Hard?
+
+* ShapeFit and ShapeKick for Robust, Scalable Structure from Motion.
+
+* Branching Gaussian Processes with Applications to Spatiotemporal Reconstruction of 3D Trees
+
+* Accurate and Linear Time Pose Estimation from Points and Lines.
+
+* Robust and Accurate Line- and/or Point-Based Pose Estimation without Manhattan Assumptions.
+
+* \piMatch: Monocular vSLAM and Piecewise Planar Reconstruction using Fast Plane Correspondences
+
+* Bayesian Image based 3D Pose Estimation
 
 ### Stereo:
 * [Efficient Multi-view Surface Refinement with Adaptive Resolution Control](http://home.cse.ust.hk/~slibc/pdf/arc.pdf)
@@ -31,14 +57,63 @@ Lists and details to be extended...
 
 *The results are quite impressive, including a [video](https://www.youtube.com/watch?v=GRW2APWn9wY) for demonstration.*
 
+* Fabian Langguth, Kalyan Sunkavalli, Sunil Hadap, Michael Goesele. Shading-aware Multi-view Stereo.
+
+*[Code](https://github.com/flanggut/smvs)*
+
 ### Reconstruction:
 
 * Indoor-Outdoor 3D Reconstruction Alignment
+
+* Minglei Li, Peter Wonka, Liangliang Nan. Manhattan-world Urban Reconstruction from Point Clouds. 
+
+* Lama Affara, Liangliang Nan, Bernard Ghanem, Peter Wonka. Large Scale Asset Extraction for Urban Images. 
+
+*The information for the above two papers can be accessed [here](http://web.siat.ac.cn/~liangliang/publications.htm).*
+
+* Federica Arrigoni, Beatrice Rossi, Andrea Fusiello. Global Registration of 3D Point Sets via LRS decomposition. 
+
+* Liuyun Duan, Florent Lafarge. Towards large-scale city reconstruction from satellites.
+
+* Hanme Kim, Stefan Leutenegger, Andrew Davison. Real-Time 3D Reconstruction and 6-DoF Tracking with an Event Camera.
+
+* Template-free 3D Reconstruction of Poorly-textured Nonrigid Surfaces
+
+* Real-time Large-Scale Dense 3D Reconstruction with Loop Closure.
+
+* 3D-R2N2: A unified approach for single and multi-view 3D object reconstruction.
 
 ### Feature and Matching:
 * [LIFT: Learned Invariant Feature Transform](http://arxiv.org/abs/1603.09114) (DL)
 
 *This is a very interesting work that obtains local feature with deep neural nets. I am looking forward to the code.*
+
+* Nam Vo, James Hays. Localizing and Orienting Street Views Using Overhead Imagery.
+
+*Matching ground-level image with overhead imagery using CNN*
+
+* Yoni Kasten, Gil Ben-Artzi, Shmuel Peleg, Michael Werman. Fundamental Matrices from Moving Objects Using Line Motion Barcodes.
+
+* Wen-Yan Lin, Siying Liu, Nianjuan Jiang, Minh Do, Ping Tan, Jiangbo Lu. RepMatch: Robust Feature Matching and Pose for Reconstructing Modern Cities. 
+
+* Amir R. Zamir, Pulkit Agrawal, Tilman Wekel, Jitendra Malik, Silvio Savarese. Generic 3D Representations via Pose Estimation and Matching. (DL)
+
+*[Website](http://3drepresentation.stanford.edu/)*
+
+* Avi Kaplan, Tamar Avraham, Michael Lindenbaum. Interpreting the Ratio Criterion for Matching SIFT Descriptors,
+
+* Guacn Long, Laurent Kneip, Jose M. Alvarez, Hongdong Li, Xiaohu Zhang, Qifeng Yu. Learning Image Matching by Simply Watching Video.
+
+* Guided Matching based on Statistical Optical Flow for Fast and Robust Correspondence Analysis.
+
+### Image Retrieval:
+* Filip Radenovic, Giorgos Tolias, Ondra Chum. [CNN Image Retrieval Learns from BoW: Unsupervised Fine-Tuning with Hard Examples](http://arxiv.org/pdf/1604.02426v2.pdf) (oral)
+
+* Xiaohan Fei, Konstantine Tsotsos, Stefano Soatto. A Simple Hierarchical Pooling Data Structure for Loop Closure.
+
+* Albert Gordo, Jon Almazan, Jerome Revaud, Diane Larlus. Deep Image Retrieval: Learning Global Representations for Image Search.
+
+* Kernel-Based Supervised Discrete Hashing for Image Retrieval
 
 ---
 
@@ -203,6 +278,8 @@ Lists and details to be extended...
 * Rhodin, H., Robertini, N., Richardt, C., Seidel, H. P., & Theobalt, C. (2015). [A Versatile Scene Model with Differentiable Visibility Applied to Generative Pose Estimation](https://gvv.mpi-inf.mpg.de/projects/DiffVis/). 
 
 * Ventura, Jonathan, Clemens Arth, and Vincent Lepetit. "An Efficient Minimal Solution for Multi-Camera Motion." 
+
+*[Code](https://github.com/jonathanventura/multi-camera-motion)
 
 ---
 
