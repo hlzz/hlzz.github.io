@@ -38,6 +38,8 @@ Lists and details to be extended...
 
 * ShapeFit and ShapeKick for Robust, Scalable Structure from Motion.
 
+*Another translation averaging method based on ADMM.*
+
 * Branching Gaussian Processes with Applications to Spatiotemporal Reconstruction of 3D Trees
 
 * Accurate and Linear Time Pose Estimation from Points and Lines.
