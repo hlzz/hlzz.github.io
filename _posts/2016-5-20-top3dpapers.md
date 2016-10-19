@@ -138,6 +138,10 @@ Lists and details to be extended...
 
 *A method to cope with illumination changes in Internet dataset. After camera registration, a clustering method is applied and seperate the scene graph into the Day cluster and the Night cluster. Dense models are reconstruction seperately, following a fusion process. (sparse -> dense)*
 
+* Fan, Bin, et al. "Do We Need Binary Features for 3D Reconstruction?."
+
+*This paper discusses whether it is necessary to use binary features in 3D reconstruction.*
+
 ### Structure-from-Motion:
 
 * ***Johannes L. Schönberger, Jan-Michael Frahm. Structure-From-Motion Revisited.
@@ -192,6 +196,10 @@ Lists and details to be extended...
 * ***Ahmet Iscen, Michael Rabbat, Teddy Furon. Efficient Large-Scale Similarity Search Using Matrix Factorization.
 
 * Theodora Kontogianni, Markus Mathias, Bastian Leibe. Incremental Object Discovery in Time-Varying Image Collections.
+
+* Torsten Sattler, Michal Havlena, Konrad Schindler, Marc Pollefeys. Large-Scale Location Recognition and the Geometric Burstiness Problem. 
+
+[code](https://github.com/tsattler/geometric_burstiness)
 
 ### Stereo:
 * Alex Locher, Michal Perdoch, Luc Van Gool. Progressive Prioritized Multi-View Stereo.
