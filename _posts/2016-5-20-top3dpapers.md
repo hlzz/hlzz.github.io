@@ -3,11 +3,7 @@ layout: post
 title: Recent Papers in 3D Computer Vision
 ---
 
-\*   - slightly related
-**  - related
-*** - very much related 
-
-Lists and details to be extended...
+Some research works related to 3D computer vision, published in the recent top venues. Lists and details to be extended...
 
 ---
 
